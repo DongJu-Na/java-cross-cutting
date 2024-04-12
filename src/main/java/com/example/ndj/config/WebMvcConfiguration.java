@@ -17,8 +17,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     @Value("${spring.profiles.active}")
     private String activeProfile;
     private static final String[] INCLUDE_PATHS = {
-            "/test/*",
-            "/test2/*"
+            "/posts/*",
+            "/comments/*"
     };
 
 
