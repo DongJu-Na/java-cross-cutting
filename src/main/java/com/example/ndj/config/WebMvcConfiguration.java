@@ -1,11 +1,14 @@
 package com.example.ndj.config;
 
 import com.example.ndj.filter.CommonFilter;
+import com.example.ndj.interceptor.LoggerInterceptor;
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
@@ -37,5 +40,15 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         return registrationBean;
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new LoggerInterceptor())
+                .excludePathPatterns(activeProfile.equals("local") ? "/*" : INCLUDE_PATHS.toString());
+        WebMvcConfigurer.super.addInterceptors(registry);
+    }
 
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }
