@@ -1,12 +1,12 @@
 package com.example.ndj.service;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+@RequiredArgsConstructor
 @Service
-@AllArgsConstructor
 public class SampleService {
 
     private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
