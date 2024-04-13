@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/sample" , method = RequestMethod.GET)
+@RequestMapping("/sample")
 @AllArgsConstructor
 public class SampleController {
 
