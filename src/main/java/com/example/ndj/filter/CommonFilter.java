@@ -17,6 +17,7 @@ public class CommonFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         log.info("클라이언트의 요청 시 전/후 처리 FilterChain을 통해 전달");
+        filterChain.doFilter(servletRequest,servletResponse);
     }
 
     @Override
