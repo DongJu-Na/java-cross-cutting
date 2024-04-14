@@ -42,8 +42,14 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoggerInterceptor())
-                .excludePathPatterns(activeProfile.equals("local") ? "/*" : INCLUDE_PATHS.toString());
+        if(activeProfile.equals("local")){
+            registry.addInterceptor(new LoggerInterceptor())
+                    .excludePathPatterns("/*");
+        }else{
+            registry.addInterceptor(new LoggerInterceptor())
+                    .excludePathPatterns(INCLUDE_PATHS);
+        }
+
         WebMvcConfigurer.super.addInterceptors(registry);
     }
 
