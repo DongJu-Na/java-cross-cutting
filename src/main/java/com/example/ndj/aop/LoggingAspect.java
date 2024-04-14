@@ -21,13 +21,13 @@ public class LoggingAspect {
     *    bean: Spring 빈의 이름을 기반으로 선택합니다. 예를 들어 bean(myService)는 이름이 "myService"인 빈에 대한 호출을 선택합니다.
     * */
 
-    @Before("execution(* com.example.ndj.controller.*.*(..))")
+    @Before("within(com.example.ndj.controller.SampleController)")
     public void logBeforeMethodExecution(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         log.info("클라이언트의 요청 시 전 aop 메소드: " + methodName);
     }
 
-    @After("execution(* com.example.ndj.controller.*.*(..))")
+    @After("within(com.example.ndj.controller.SampleController)")
     public void logAfterMethodExecution(JoinPoint joinPoint) {
         String methodName = joinPoint.getSignature().getName();
         log.info("클라이언트의 요청 시 후 aop 메소드: " + methodName);
